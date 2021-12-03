@@ -17,22 +17,27 @@ class CarTest {
         assertEquals(1, car.getLength());
     }
 
+    @Test
     void getBreath() {
         assertEquals(0.5, car.getBreath());
     }
 
+    @Test
     void getSpeed() {
         assertEquals(0, car.getSpeed());
     }
 
+    @Test
     void getPosition() {
         assertEquals(1, car.getPosition());
     }
 
+    @Test
     void getRoad() {
         assertEquals(road, car.getCurrentRoad());
     }
 
+    @Test
     void getId() {
         assertEquals("car_0", car.getId());
     }
