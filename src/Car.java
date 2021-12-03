@@ -1,7 +1,7 @@
 public class Car {
-    private static final int stopped = 0; //Basic speed of car is 0/
+    private static final int STOPPED = 0; //Basic speed of car is 0/
     private static final int Next_Road_Index = 0;
-    private static final int Star_Position = 1; //the car's position also include in 1/
+    private static final int Start_Position = 1; //the car's position also include in 1/
     String id;
     static float length;// how many space the car will be occupied/
     private static float breath; // the width of car could be decimal ,so it should be float type/
@@ -31,7 +31,7 @@ public class Car {
     //set the movement for the basic car/
     public void move(){
         this.speed = this.currentRoad.getSpeedLimit(); //get the speed limit for the road and compare with the speed /
-        if (!this.currentRoad.getLightOnRoad().isEmpty() && this.position == this.currentRoad.getLightsOnRoad().get(0).getPosition() && this.currentRoad.getLightsOnRoad().get(0).getState().equals("Red")){
+        if (!this.currentRoad.getLightsOnRoad().isEmpty() && this.position == this.currentRoad.getLightsOnRoad().get(0).getPosition() && this.currentRoad.getLightsOnRoad().get(0).getState().equals("Red")){
             this.speed = STOPPED;
         } else {
             this.speed = this.currentRoad.getSpeedLimit();
@@ -39,7 +39,7 @@ public class Car {
                 this.currentRoad.getCarsOnRoad().remove(this);
                 this.currentRoad = this.currentRoad.getConnectedRoads().get(Next_Road_Index);
                 this.currentRoad.getCarsOnRoad().add(this);
-                this.currentRoad = START_POSITION;
+                this.position = Start_Position;
             } else if (this.currentRoad.getLength()>this.getPosition()){
                 this.position = (this.position + this.speed);
             } else {
