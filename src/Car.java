@@ -32,11 +32,50 @@ public class Car {
     public void move(){
         this.speed = this.currentRoad.getSpeedLimit(); //get the speed limit for the road and compare with the speed /
         if (!this.currentRoad.getLightOnRoad().isEmpty() && this.position == this.currentRoad.getLightsOnRoad().get(0).getPosition() && this.currentRoad.getLightsOnRoad().get(0).getState().equals("Red")){
-            this.currentRoad.getCarsOnRoad().remove(this);
-            this.currentRoad = this.currentRoad.getConnectedRoads().get(Next_Road_Index)
+            this.speed = STOPPED;
+        } else {
+            this.speed = this.currentRoad.getSpeedLimit();
+            if (this.currentRoad.getLength() == this.getPosition() && !this.currentRoad.getConnectedRoads().isEmpty()) {
+                this.currentRoad.getCarsOnRoad().remove(this);
+                this.currentRoad = this.currentRoad.getConnectedRoads().get(Next_Road_Index);
+                this.currentRoad.getCarsOnRoad().add(this);
+                this.currentRoad = START_POSITION;
+            } else if (this.currentRoad.getLength()>this.getPosition()){
+                this.position = (this.position + this.speed);
+            } else {
+                this.speed = STOPPED;
+            }
+
         }
     }
+    //set the output of the car Status/
+    public void printCarStatus(){
+        System.out.printf("%s going:%dm/s on %s at position:%s%n", this.getId(), this.getSpeed(), this.getCurrentRoad().
+                getId(), this.getPosition());
+    }
 
+    //get the length for the car/
+    public float getLength(){
+        return length;
+    }
+    public void setLength(float length) {Car.length = length;}
+
+    //get the Breath for the car/
+    public float getBreath(){return breath;}
+    public void setBreath(float breath) {Car.breath = breath;}
+
+    //get the Car speed
+    public int getSpeed(){return speed;}
+    public void setSpeed(int speed){this.speed = speed;}
+
+    public int getPosition(){return position;}
+    public void setPosition(int position){this.position = position;}
+
+    public Road getCurrentRoad(){return currentRoad;}
+    public void setCurrentRoad(Road currentRoad){this.currentRoad = currentRoad;}
+
+    public String getId() {return id;}
+    public void setId(String id) {this.id = id;}
 }
 
 
