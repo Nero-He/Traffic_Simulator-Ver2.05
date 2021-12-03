@@ -39,7 +39,7 @@ public class Road {
     }
     public String printEndLocation(){return endLocation[0] + "," + endLocation[1];}
     public void printRoadInfo(){
-        System.out.printf("%s limit of:%dm/s is %dm long at location:%s to %s%n", this.getId(),this.getSpeedLimit(),this.getLength(),this.printStarLocation(),this.printEndLocation());
+        System.out.printf("%s limit of:%dm/s is %dm long at location:%s to %s%n", this.getId(),this.getSpeedLimit(),this.getLength(),this.printStartLocation(),this.printEndLocation());
     }
     public void setEndLocation(int[] endLocation){this.endLocation = endLocation;}
     public int[] getStartLocation(){return startLocation;}
@@ -51,7 +51,7 @@ public class Road {
 
     // the Traffic Lights part/
     public ArrayList<TrafficLight> getLightsOnRoad(){return lightsOnRoad;}
-    public setLightsOnRoad(ArrayList<TrafficLight> lightsOnRoad){this.lightsOnRoad = lightsOnRoad;}
+    public void setLightsOnRoad(ArrayList<TrafficLight> lightsOnRoad){this.lightsOnRoad = lightsOnRoad;}
 
     // the connected road for the a and b roads/
     public ArrayList<Road> getConnectedRoads(){return connectedRoads;}
