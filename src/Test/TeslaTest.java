@@ -1,3 +1,7 @@
+package Test;
+
+import Model.Road;
+import Model.Tesla;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

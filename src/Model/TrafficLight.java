@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.Random;
 //use the random to control the lights turn red or green/
 

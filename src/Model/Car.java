@@ -1,3 +1,5 @@
+package Model;
+
 public class Car {
     private static final int STOPPED = 0; //Basic speed of car is 0/
     private static final int Next_Road_Index = 0;
@@ -7,7 +9,7 @@ public class Car {
     private static float breath; // the width of car could be decimal ,so it should be float type/
     private int speed; // the car's speed should be regular /
     private int position; // position on what the road is/
-    private Road currentRoad; // current Road object/
+    private Road currentRoad; // current Model.Road object/
 
     public Car(String id, Road currentRoad){
         this.id = "car_" + id;
@@ -64,7 +66,7 @@ public class Car {
     public float getBreath(){return breath;}
     public void setBreath(float breath) {Car.breath = breath;}
 
-    //get the Car speed
+    //get the Model.Car speed
     public int getSpeed(){return speed;}
     public void setSpeed(int speed){this.speed = speed;}
 

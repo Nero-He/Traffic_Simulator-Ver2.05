@@ -1,6 +1,14 @@
+package Model;
+
 import java.util.ArrayList;  // To set a list for include the cars
 
 public class Road {
+
+    public enum Direction{  // to build two direction module into One package
+        HORIZONTAL,VERTICAL
+    }
+
+    private Direction direction;
     private String id;
     private int SpeedLimit; //get this and compare with the car speed
     private int length; // how long is the road
@@ -10,12 +18,14 @@ public class Road {
     private ArrayList<TrafficLight> lightsOnRoad = new ArrayList<>();
     private ArrayList<Road> connectedRoads = new ArrayList<>();
 
-    public Road(String id, int speedLimit, int length, int[] startLocation){
+    public Road(String id, int speedLimit, int length, int[] startLocation, Direction direction){
         this.id = "road_" + id;
         this.SpeedLimit = speedLimit;
         this.length = length;
         this.startLocation = startLocation;
         this.endLocation = new int[]{this.length + this.startLocation[0], 0};
+        this.direction = direction;
+        setEndLocation();
     }
 
 
