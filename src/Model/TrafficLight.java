@@ -1,5 +1,6 @@
 package Model;
 
+import java.awt.*;
 import java.util.Random;
 //use the random to control the lights turn red or green/
 
@@ -24,31 +25,47 @@ public class TrafficLight {
     public void operate(int seed){
         Random random = new Random(seed);
         double chance = random.nextDouble();
-        if (chance > CHANGE_GREEN) {
-            this.setState(GREEN);
+        if (chance > CHANGE && !getRoadAttachedTo().getVehiclesOnRoad().isEmpty()){
+            setState(RED);
         }else {
-            this.setState(RED);
+            setState(GREEN);
         }
 
     }
 
 
-    //set the output for the status/
-    public void printLightStatus(){
-        System.out.printf("%s is:%s on %s at position:%s%n", this.getId(), this.getState(), this.getRoadAttachedTo().getId(), this.getPosition());
+    public String getState() {return state;}
+    public void setState(String state) {this.state = state;}
+    public  Road getRoadAttachedTo() {return roadAttachedTo;}
+    public int getPosition() {return position;}
+    public String getId() {return id;}
+    public void  print(Graphics g, int scale){
+        if (roadAttachedTo.getDirection() == Road.Direction.HORIZONTAL){
+            switch (state){
+                case "Red":
+                    g.setColor(Color.RED);
+                    break;
+                case "Green":
+                    g.setColor(Color.GREEN);
+            }
+            int[] startLocation = getRoadAttachedTo().getStartLocation();
+            int x = (getPosition() + startLocation[0]) * scale;
+            int y =startLocation[1] * scale;
+            int height = (getRoadAttachedTo().getWidth() / 2) * scale;
+            g.fillRect(x, y, scale, height);
+        }
+        if (roadAttachedTo.getDirection() == Road.Direction.VERTICAL){
+            switch (state){
+                case "Red":
+                    g.setColor(Color.RED);
+                case "Green":
+                    g.setColor(Color.GREEN);
+            }
+            int[] startLocation = getRoadAttachedTo().getStartLocation();
+            int x = (startLocation[0] + (getRoadAttachedTo().getWidth() / 2)) * scale;
+            int y = (getPosition() + startLocation[1]) * scale;
+            int width = (getRoadAttachedTo().getWidth() / 2) * scale;
+            g.fillRect(x, y, width, scale);
+        }
     }
-
-
-    //set the data/
-    public String getState(){return state;}
-    public void setState(String state){this.state = state;};
-
-    public Road getRoadAttachedTo(){return roadAttachedTo;}
-    public void setRoadAttachedTo(Road roadAttachedTo){this.roadAttachedTo = roadAttachedTo;}
-
-    public int getPosition(){return position;}
-    public String getId(){return id;}
-
-    public void setId(String id){this.id = id;}
-    public void setPosition(int position){this.position = position;}
 }
