@@ -1,30 +1,50 @@
 package Test;
 
-import Model.Road;
 import Model.Tesla;
+import Model.Road;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TeslaTest {
-    Road road = new Road("0", 1, 5, new int[]{0, 0});
-    Tesla tesla = new Tesla("0");
-
-
+    Module.Road road = new Model.Road("0", 1, 5, new int[]{0, 0}, Road.Direction.VERTICAL);
+    Module.Tesla tesla = new Model.Tesla("0", road);
+    @Test
+    void testMove(){
+        Tesla.move();
+        assertEquals(-3, Tesla.getPosition());
+    }
     @Test
     void getLength() {
-        assertEquals(3, tesla.getLength());
+        assertEquals(4, Tesla.getLength());
+    }
+
+    @Test
+    void getBreadth() {
+        assertEquals(2.0, Tesla.getBreadth());
+    }
+
+    @Test
+    void getSpeed() {
+        assertEquals(0, Tesla.getSpeed());
+    }
+
+    @Test
+    void getPosition() {
+        assertEquals(-4, Tesla.getPosition());
+    }
+
+    @Test
+    void getRoad() {
+        assertEquals(road, Tesla.getCurrentRoad());
     }
 
     @Test
     void getId() {
-        assertEquals("tesla_0", tesla.getId());
-    }
-
-    @Test
-    void testInheritance() {
-        assertEquals(0, tesla.getSpeed());
-        assertEquals(1, tesla.getPosition());
+        assertEquals("car_0", Tesla.getId());
     }
 }
+
+
+
 
