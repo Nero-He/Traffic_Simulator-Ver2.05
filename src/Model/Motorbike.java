@@ -1,8 +1,12 @@
 package Model;
 
-public class Motorbike extends Car {
-    public Motorbike(String id){
+public class Motorbike extends Vehicle {
+
+    public Motorbike(String id, Road, Road currentRoad){
+        super(currentRoad);
         this.id = ("Model.Motorbike" + id);
-        Car.length = super.getLength() * 1.5f;
+        setLength(super.getLength() / 1);
+        breadth = super.getBreadth() / 1;
+        position = -length;
     }
 }
