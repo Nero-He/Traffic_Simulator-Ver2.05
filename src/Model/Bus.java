@@ -1,6 +1,6 @@
 package Model;
 
-public class Bus extends Car {
+public class Bus extends Vehicle {
 
     public Bus(String id, Road currentRoad) {
         super(currentRoad);
